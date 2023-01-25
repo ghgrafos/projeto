@@ -1,0 +1,5 @@
+com/vmx/projeto/WebMvcConfig.class
+com/vmx/projeto/model/Pessoa.class
+com/vmx/projeto/controller/PessoaController.class
+com/vmx/projeto/repository/PessoaRepository.class
+com/vmx/projeto/ProjetoApplication.class
