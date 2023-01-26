@@ -3,6 +3,7 @@ package com.vmx.projeto.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.support.Repositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.vmx.projeto.model.Pessoa;
 import com.vmx.projeto.repository.PessoaRepository;
 
+
 @Controller
 public class PessoaController {
 	
@@ -23,7 +25,7 @@ public class PessoaController {
 
 	@RequestMapping(method=RequestMethod.GET, value="/cadastropessoa")
 	public ModelAndView inicio() {
-		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
+		ModelAndView modelAndView = new ModelAndView("/cadastro/cadastropessoa");
 		modelAndView.addObject("pessoaobj", new Pessoa());
 		return modelAndView;
 	}
@@ -31,7 +33,7 @@ public class PessoaController {
 	@RequestMapping(method=RequestMethod.POST, value="**/salvarpessoa")
 	public ModelAndView  salvar(Pessoa pessoa) {
 		pessoaRepository.save(pessoa);
-		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
+		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
 		Iterable<Pessoa> pessoaIt = pessoaRepository.findAll();
 		andView.addObject("pessoas", pessoaIt);
 		andView.addObject("pessoaobj", new Pessoa());
@@ -47,7 +49,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@GetMapping("editarpessoa/{idpessoa}")
+	@GetMapping("/editarpessoa/{idpessoa}")
 	public ModelAndView editar(@PathVariable("idpessoa")Long idpessoa) {
 		
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
@@ -57,7 +59,7 @@ public class PessoaController {
 		return modelAndView;
 	}
 	
-	@GetMapping("removerpessoa/{idpessoa}")
+	@GetMapping("/removerpessoa/{idpessoa}")
 	public ModelAndView excluir(@PathVariable("idpessoa")Long idpessoa) {
 		
 		pessoaRepository.deleteById(idpessoa);
@@ -75,4 +77,5 @@ public class PessoaController {
 		modelAndView.addObject("pessoaobj", new Pessoa());
 		return modelAndView;
 	}
+	
 }

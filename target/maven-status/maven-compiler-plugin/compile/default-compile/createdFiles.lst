@@ -3,3 +3,5 @@ com/vmx/projeto/model/Pessoa.class
 com/vmx/projeto/controller/PessoaController.class
 com/vmx/projeto/repository/PessoaRepository.class
 com/vmx/projeto/ProjetoApplication.class
+com/example/vmxjava/VmxjavaApplication.class
+com/example/vmxjava/WebMvcConfig.class
