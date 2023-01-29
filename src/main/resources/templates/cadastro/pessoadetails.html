@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'pessoadetails')}">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro</title>
+</head>
+<body>
+
+	<div class="col-lg-10 col-lg-offset-1">
+		<hr>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<font style="vertical-align: herdado;"><font
+					style="vertical-align: herdado;"> Cadastro Pessoa </font></font>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div th:each="p: ${pessoaobj}" class="panel-body">
+				<font style="vertical-align: herdado;"><font
+					style="vertical-align: herdado;">
+						<p>
+							Id: <span th:text="${p.id}"></span>
+						</p>
+						<p>
+							Nome: <span th:text="${p.nome}"></span>
+						</p>
+						<p>
+							Sobrenome: <span th:text="${p.sobrenome}"></span>
+						</p>
+				</font></font>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="col-lg-10 col-lg-offset-1">
+			<hr>
+			<form class="form-horizontal"
+				th:action="@{/addpessoadetails/{pessoaid}(pessoaid=${pessoaobj.id})}"
+				method="post">
+				<fiedset> <legend>Cadatrar Detalhes Pessoa</legend>
+
+				<div class="form-group">
+					<label class="active col-lg-2 control-label" for="cpf">______Cpf</label>
+					<input id="cpf" name="cpf" class="validate>">
+
+				</div>
+
+				<div class="form-group">
+					<label class="active col-lg-2 control-label" for="endereco">Endereço</label>
+					<input id="endereco" name="endereco" class="validate>">
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-9 col-lg-offset-2">
+						<button type="reset" class="btn btn-default">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
+				</div>
+
+				</fiedset>
+			</form>
+			<hr>
+		</div>
+
+
+		<div class="col-lg-8 col-lg-offset-2">
+			<hr>
+			<h2>Pessoas Detalhes</h2>
+
+			<table class="table table-striped table-hover ">
+				<thead>
+
+					<th><font style="vertical-align: inherit;"><font
+							style="vertical-align: inherit;">Cpf</font></font></th>
+					<th><font style="vertical-align: inherit;"><font
+							style="vertical-align: inherit;">Endereço</font></font></th>
+				</thead>
+				<tbody>
+					<tr th:each="d: ${pessoaDetails}">
+						<td th:text="${d.cpf}"></td>
+						<td th:text="${d.endereco}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+
+	</div>
+
+</body>
+</html>
+
+
+

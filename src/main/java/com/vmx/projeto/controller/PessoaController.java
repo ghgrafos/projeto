@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.vmx.projeto.model.Pessoa;
+import com.vmx.projeto.model.PessoaDetails;
+import com.vmx.projeto.repository.PessoaDetailsRepository;
 import com.vmx.projeto.repository.PessoaRepository;
 
 
@@ -22,6 +24,9 @@ public class PessoaController {
 	
 	@Autowired
 	public PessoaRepository pessoaRepository;
+	
+	@Autowired
+	public PessoaDetailsRepository pessoadetailsRepository;
 
 	@RequestMapping(method=RequestMethod.GET, value="/cadastropessoa")
 	public ModelAndView inicio() {
@@ -40,7 +45,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/listapessoas")
+	@RequestMapping(method=RequestMethod.GET, value="**/listapessoas")
 	public ModelAndView pessoas() {
 		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		Iterable<Pessoa> pessoaIt = pessoaRepository.findAll();
@@ -76,6 +81,32 @@ public class PessoaController {
 		modelAndView.addObject("pessoas", pessoaRepository.findPessoaByName(nomepesquisa));
 		modelAndView.addObject("pessoaobj", new Pessoa());
 		return modelAndView;
+	}
+	
+	@GetMapping("/pessoadetails/{idpessoa}")
+	public ModelAndView pessoaDetails(@PathVariable("idpessoa")Long idpessoa) {
+		
+		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
+		
+		ModelAndView modelAndView = new ModelAndView("cadastro/pessoadetails");
+		modelAndView.addObject("pessoaobj", pessoa.get());
+		modelAndView.addObject("pessoaDetails", pessoadetailsRepository.getPessoaDetails(idpessoa));
+		return modelAndView;
+	}
+	
+	@PostMapping("**/addpessoadetails/{pessoaid}")
+	public ModelAndView addPessoaDetail(PessoaDetails pessoaDetails, @PathVariable("pessoaid")Long pessoaid) {
+		
+		Pessoa pessoa = pessoaRepository.findById(pessoaid).get();
+		pessoaDetails.setPessoa(pessoa);
+		pessoadetailsRepository.save(pessoaDetails);
+		
+		ModelAndView mva = new ModelAndView("cadastro/pessoadetails");
+		mva.addObject("pessoaobj", pessoa);
+		mva.addObject("pessoaDetails", pessoadetailsRepository.getPessoaDetails(pessoaid));
+
+		
+		return mva;
 	}
 	
 }

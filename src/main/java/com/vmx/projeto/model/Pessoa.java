@@ -1,14 +1,14 @@
 package com.vmx.projeto.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Pessoa implements Serializable {
@@ -22,6 +22,19 @@ public class Pessoa implements Serializable {
 	private String nome;
 
 	private String sobrenome;
+	
+	@OneToMany(mappedBy="pessoa")
+	private List<PessoaDetails> pessoaDetails;
+
+	
+	
+	public List<PessoaDetails> getPessoaDetails() {
+		return pessoaDetails;
+	}
+
+	public void setPessoaDetails(List<PessoaDetails> pessoaDetails) {
+		this.pessoaDetails = pessoaDetails;
+	}
 
 	public Pessoa() {
 	};
