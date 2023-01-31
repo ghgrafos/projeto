@@ -1,7 +1,5 @@
 package com.vmx.projeto.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +18,11 @@ public class PessoaDetails {
 	
 	private String cpf;
 	
+	private String mobile;
+	
+	private String profissao;
+	
+	private String datanascimento;
 
 	@OneToOne
 	@JoinColumn(name="pessoaid")
@@ -55,5 +58,29 @@ public class PessoaDetails {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
+	}
+
+	public String getDatanascimento() {
+		return datanascimento;
+	}
+
+	public void setDatanascimento(String datanascimento) {
+		this.datanascimento = datanascimento;
 	}
 }
