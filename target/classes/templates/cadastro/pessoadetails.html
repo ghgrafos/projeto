@@ -47,7 +47,7 @@
 				<hr>
 				<form class="form-horizontal"
 					th:action="@{/addpessoadetails/{pessoaid}(pessoaid=${pessoaobj.id})}"
-					method="post">
+					method="post" onsubmit = "return validarCampos()? true : false">
 					<fiedset> <legend>Cadatrar Pessoa Detalhes</legend>
 
 					<div class="form-group">
@@ -127,6 +127,37 @@
 
 		</div>
 	</div>
+	<script type="text/javascript">
+		function validarCampos(){
+			cpf = document.getElementById("cpf").value;
+			endereco = document.getElementById("endereco").value;
+			mobile = document.getElementById("mobile").value;
+			profissao = document.getElementById("profissao").value;
+			datanascimento = document.getElementById("datanascimento").value;
+			
+			if (cpf === ''){
+				alert('O cpf deve ser informado')
+				return false;
+			}
+			else if (endereco === ''){
+				alert('O endereco deve ser informado')
+				return false;
+			}
+			else if (mobile === ''){
+				alert('O numero do celular e obrigatorio')
+				return false;
+			}
+			else if (profissao === ''){
+				alert('A sua profissao para melhor clareza?')
+				return false;
+			}
+			else if (datanascimento === ''){
+				alert('informe a sua data de nascimento por favor!')
+				return false;
+			}
+			return true;
+		}
+	</script>
 </body>
 </html>
 
