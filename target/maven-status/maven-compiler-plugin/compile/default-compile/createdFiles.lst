@@ -1,5 +1,6 @@
 com/vmx/projeto/service/UserServiceImpl.class
 com/vmx/projeto/model/Pessoa.class
+com/vmx/projeto/repository/PessoaDetailRepository.class
 com/vmx/projeto/model/Role.class
 com/vmx/projeto/model/PessoaDetail.class
 com/vmx/projeto/controller/AuthController.class
@@ -11,7 +12,6 @@ com/vmx/projeto/service/UserService.class
 com/vmx/projeto/config/WebMvcConfig.class
 com/vmx/projeto/repository/UserRepository.class
 com/vmx/projeto/config/WebSecurityConfig.class
-com/vmx/projeto/repository/PessoaDetailsRepository.class
 com/vmx/projeto/controller/AdminController.class
 com/vmx/projeto/ProjetoApplication.class
 com/vmx/projeto/config/CustomLoginSucessHandler.class

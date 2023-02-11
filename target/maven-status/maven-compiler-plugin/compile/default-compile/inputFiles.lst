@@ -12,6 +12,6 @@
 /home/vmx/Projetos2023/projeto/src/main/java/com/vmx/projeto/config/WebMvcConfig.java
 /home/vmx/Projetos2023/projeto/src/main/java/com/vmx/projeto/model/Role.java
 /home/vmx/Projetos2023/projeto/src/main/java/com/vmx/projeto/config/WebSecurityConfig.java
-/home/vmx/Projetos2023/projeto/src/main/java/com/vmx/projeto/repository/PessoaDetailsRepository.java
 /home/vmx/Projetos2023/projeto/src/main/java/com/vmx/projeto/service/UserServiceImpl.java
 /home/vmx/Projetos2023/projeto/src/main/java/com/vmx/projeto/model/PessoaDetail.java
+/home/vmx/Projetos2023/projeto/src/main/java/com/vmx/projeto/repository/PessoaDetailRepository.java

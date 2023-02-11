@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.vmx.projeto.model.Pessoa;
 import com.vmx.projeto.model.PessoaDetail;
-import com.vmx.projeto.repository.PessoaDetailsRepository;
+import com.vmx.projeto.repository.PessoaDetailRepository;
 import com.vmx.projeto.repository.PessoaRepository;
 
 
@@ -31,7 +31,7 @@ public class PessoaController {
 	public PessoaRepository pessoaRepository;
 	
 	@Autowired
-	public PessoaDetailsRepository pessoadetailsRepository;
+	public PessoaDetailRepository pessoadetailsRepository;
 
 	@RequestMapping(method=RequestMethod.GET, value="/cadastropessoa")
 	public ModelAndView inicio() {
@@ -85,7 +85,7 @@ public class PessoaController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/removerpessoa/{idpessoa}")
+	@GetMapping("**/removerpessoa/{idpessoa}")
 	public ModelAndView excluir(@PathVariable("idpessoa")Long idpessoa) {
 		
 		pessoaRepository.deleteById(idpessoa);
@@ -104,7 +104,7 @@ public class PessoaController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/adddetailpessoa/{idpessoa}")
+	@GetMapping("**/adddetailpessoa/{idpessoa}")
 	public ModelAndView cadstroPessoaDetails(@PathVariable("idpessoa")Long idpessoa) {
 		
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
