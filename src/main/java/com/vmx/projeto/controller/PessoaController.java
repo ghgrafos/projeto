@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.vmx.projeto.model.Pessoa;
-import com.vmx.projeto.model.PessoaDetails;
+import com.vmx.projeto.model.PessoaDetail;
 import com.vmx.projeto.repository.PessoaDetailsRepository;
 import com.vmx.projeto.repository.PessoaRepository;
 
@@ -80,7 +80,7 @@ public class PessoaController {
 		
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		
-		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
+		ModelAndView modelAndView = new ModelAndView("/cadastro/cadastropessoa");
 		modelAndView.addObject("pessoaobj", pessoa.get());
 		return modelAndView;
 	}
@@ -90,7 +90,7 @@ public class PessoaController {
 		
 		pessoaRepository.deleteById(idpessoa);
 		
-		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
+		ModelAndView modelAndView = new ModelAndView("/cadastro/cadastropessoa");
 		modelAndView.addObject("pessoas", pessoaRepository.findAll());
 		modelAndView.addObject("pessoaobj", new Pessoa());
 		return modelAndView;
@@ -98,35 +98,46 @@ public class PessoaController {
 	
 	@PostMapping("**/pesquisarpessoa")
 	public ModelAndView pesquisar(@RequestParam("nomepesquisa")String nomepesquisa) {
-		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
+		ModelAndView modelAndView = new ModelAndView("/cadastro/cadastropessoa");
 		modelAndView.addObject("pessoas", pessoaRepository.findPessoaByName(nomepesquisa));
 		modelAndView.addObject("pessoaobj", new Pessoa());
 		return modelAndView;
 	}
 	
-	@GetMapping("/pessoadetails/{idpessoa}")
-	public ModelAndView pessoaDetails(@PathVariable("idpessoa")Long idpessoa) {
+	@GetMapping("/adddetailpessoa/{idpessoa}")
+	public ModelAndView cadstroPessoaDetails(@PathVariable("idpessoa")Long idpessoa) {
 		
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		
-		ModelAndView modelAndView = new ModelAndView("cadastro/pessoadetails");
+		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
 		modelAndView.addObject("pessoaobj", pessoa.get());
 		modelAndView.addObject("pessoaDetails", pessoadetailsRepository.getPessoaDetails(idpessoa));
 		return modelAndView;
 	}
 	
-	@PostMapping("**/addpessoadetails/{pessoaid}")
-	public ModelAndView addPessoaDetail(PessoaDetails pessoaDetails, @PathVariable("pessoaid")Long pessoaid) {
+	@PostMapping("**/adddetailpessoa/{pessoaid}")
+	public ModelAndView addPessoaDetail(PessoaDetail pessoaDetail, @PathVariable("pessoaid")Long pessoaid) {
 		
 		Pessoa pessoa = pessoaRepository.findById(pessoaid).get();
-		pessoaDetails.setPessoa(pessoa);
-		pessoadetailsRepository.save(pessoaDetails);
+		pessoaDetail.setPessoa(pessoa);
+		pessoadetailsRepository.save(pessoaDetail);
 		
-		ModelAndView mva = new ModelAndView("cadastro/pessoadetails");
-		mva.addObject("pessoaobj", pessoa);
-		mva.addObject("pessoaDetails", pessoadetailsRepository.getPessoaDetails(pessoaid));
+		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
+		modelAndView.addObject("pessoaobj", pessoa);
+		modelAndView.addObject("pessoaDetail", pessoadetailsRepository.getPessoaDetails(pessoaid));
 	
-		return mva;
+		return modelAndView;
+	}
+	
+	@GetMapping("**/pessoadetails/{idpessoa}")
+	public ModelAndView pessoaDetails(@PathVariable("idpessoa")Long idpessoa) {
+		
+		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
+		
+		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
+		modelAndView.addObject("pessoaobj", pessoa.get());
+		modelAndView.addObject("pessoaDetails", pessoadetailsRepository.getPessoaDetails(idpessoa));
+		return modelAndView;
 	}
 	
 	@GetMapping("**/removerpessoadetails/{id_pessoa_details}")
@@ -134,7 +145,7 @@ public class PessoaController {
 		
 		pessoadetailsRepository.deleteById(id_pessoa_details);
 		
-		ModelAndView modelAndView = new ModelAndView("cadastro/pessoadetails");
+		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
 		modelAndView.addObject("pessoas", pessoaRepository.findAll());
 		modelAndView.addObject("pessoaobj", new Pessoa());
 		return modelAndView;

@@ -3,6 +3,7 @@ package com.vmx.projeto.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,16 +34,15 @@ public class Pessoa implements Serializable {
 	@NotNull(message = "O campo email não pode ser nulo")
 	private String email;
 	
-	@OneToMany(mappedBy="pessoa")
-	private List<PessoaDetails> pessoaDetails;
+	@OneToMany(mappedBy="pessoa", orphanRemoval = true , cascade= CascadeType.ALL)
+	private List<PessoaDetail> pessoaDetails;
 
 	
-	
-	public List<PessoaDetails> getPessoaDetails() {
+	public List<PessoaDetail> getPessoaDetails() {
 		return pessoaDetails;
 	}
 
-	public void setPessoaDetails(List<PessoaDetails> pessoaDetails) {
+	public void setPessoaDetails(List<PessoaDetail> pessoaDetails) {
 		this.pessoaDetails = pessoaDetails;
 	}
 

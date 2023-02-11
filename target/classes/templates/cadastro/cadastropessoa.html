@@ -10,10 +10,10 @@
 
 	<div class="container">
 		<div class="col-lg-10 col-lg-offset-1">
-		<hr>
-		<div th:each = "m: ${msg}">
-		<span th:text = "${m}"></span>
-		</div>
+			<hr>
+			<div th:each="m: ${msg}">
+				<span th:text="${m}"></span>
+			</div>
 			<hr>
 			<form class="form-horizontal" action="salvarpessoa" method="post"
 				th:object="${pessoaobj}">
@@ -32,7 +32,7 @@
 						<label for="nome" class="col-lg-2 control-label">Nome</label>
 						<div class="col-lg-9">
 							<input type="text" class="form-control" name="nome"
-								placeholder="Nome" th:field="*{nome}">
+								placeholder="Nome" th:field="*{nome}" id="nome">
 						</div>
 					</div>
 
@@ -40,15 +40,15 @@
 						<label for="sobrenome" class="col-lg-2 control-label">Sobrenome</label>
 						<div class="col-lg-9">
 							<input type="text" class="form-control" name="sobrenome"
-								placeholder="Sobrenome" th:field="*{sobrenome}">
+								placeholder="Sobrenome" th:field="*{sobrenome}" id="sobrenome">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="sobrenome" class="col-lg-2 control-label">Sobrenome</label>
+						<label for="email" class="col-lg-2 control-label">Email</label>
 						<div class="col-lg-9">
 							<input type="text" class="form-control" name="email"
-								placeholder="Email" th:field="*{email}">
+								placeholder="Email" th:field="*{email}" id="email">
 						</div>
 					</div>
 
@@ -63,12 +63,13 @@
 
 			<hr>
 
-			<form class="form-horizontal" action="pesquisarpessoa" method="post">
+			<form class="form-horizontal" th:action="pesquisarpessoa"
+				method="post">
 				<fieldset>
 					<legend>Pesquisar Pesssoa</legend>
 					<div class="form-group">
 						<div class="col-lg-9 col-lg-offset-2">
-							<label class="control-label" for="inputDefault">Pesquisar</label>
+							<label class="control-label" for="nomepesquisa">Pesquisar</label>
 							<input type="text" class="form-control" name="nomepesquisa">
 						</div>
 					</div>
@@ -83,13 +84,12 @@
 			<hr>
 		</div>
 
-		<div class="col-lg-8 col-lg-offset-2">
 			<hr>
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
 						<th><font style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">#</font></font></th>
+								style="vertical-align: inherit;">Id</font></font></th>
 						<th><font style="vertical-align: inherit;"><font
 								style="vertical-align: inherit;">Nome</font></font></th>
 						<th><font style="vertical-align: inherit;"><font
@@ -127,6 +127,6 @@
 			</table>
 			<hr>
 		</div>
-	</div>
+
 </body>
 </html>

@@ -6,6 +6,14 @@ body {
 	height:auto;
 }
 
+.panel-footer {
+	min-width: 100%;
+	max-width: 100%;
+	height: auto;
+	padding: 0%;
+	margin: 0%;
+}
+
 footer {
 	background-color:#d3d7cf;
 	min-width:100%;
