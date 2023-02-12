@@ -31,7 +31,7 @@ public class PessoaController {
 	public PessoaRepository pessoaRepository;
 	
 	@Autowired
-	public PessoaDetailRepository pessoadetailsRepository;
+	public PessoaDetailRepository pessoadetailRepository;
 
 	@RequestMapping(method=RequestMethod.GET, value="/cadastropessoa")
 	public ModelAndView inicio() {
@@ -111,7 +111,7 @@ public class PessoaController {
 		
 		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
 		modelAndView.addObject("pessoaobj", pessoa.get());
-		modelAndView.addObject("pessoaDetails", pessoadetailsRepository.getPessoaDetails(idpessoa));
+		modelAndView.addObject("pessoaDetail", pessoadetailRepository.getPessoaDetails(idpessoa));
 		return modelAndView;
 	}
 	
@@ -120,11 +120,11 @@ public class PessoaController {
 		
 		Pessoa pessoa = pessoaRepository.findById(pessoaid).get();
 		pessoaDetail.setPessoa(pessoa);
-		pessoadetailsRepository.save(pessoaDetail);
+		pessoadetailRepository.save(pessoaDetail);
 		
 		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
 		modelAndView.addObject("pessoaobj", pessoa);
-		modelAndView.addObject("pessoaDetail", pessoadetailsRepository.getPessoaDetails(pessoaid));
+		modelAndView.addObject("pessoaDetails", pessoadetailRepository.getPessoaDetails(pessoaid));
 	
 		return modelAndView;
 	}
@@ -136,14 +136,14 @@ public class PessoaController {
 		
 		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
 		modelAndView.addObject("pessoaobj", pessoa.get());
-		modelAndView.addObject("pessoaDetails", pessoadetailsRepository.getPessoaDetails(idpessoa));
+		modelAndView.addObject("pessoaDetails", pessoadetailRepository.getPessoaDetails(idpessoa));
 		return modelAndView;
 	}
 	
-	@GetMapping("**/removerpessoadetails/{id_pessoa_details}")
-	public ModelAndView removerPessoaDetails(@PathVariable("id_pessoa_details")Long id_pessoa_details) {
+	@GetMapping("**/removerpessoadetails/{idpessoadetails}")
+	public ModelAndView removerPessoaDetails(@PathVariable("idpessoadetails")Long idpessoadetails) {
 		
-		pessoadetailsRepository.deleteById(id_pessoa_details);
+		pessoadetailRepository.deleteById(idpessoadetails);
 		
 		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
 		modelAndView.addObject("pessoas", pessoaRepository.findAll());

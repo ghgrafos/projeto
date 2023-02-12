@@ -35,15 +35,15 @@ public class Pessoa implements Serializable {
 	private String email;
 	
 	@OneToMany(mappedBy="pessoa", orphanRemoval = true , cascade= CascadeType.ALL)
-	private List<PessoaDetail> pessoaDetails;
+	private List<PessoaDetail> pessoaDetail;
 
 	
 	public List<PessoaDetail> getPessoaDetails() {
-		return pessoaDetails;
+		return pessoaDetail;
 	}
 
-	public void setPessoaDetails(List<PessoaDetail> pessoaDetails) {
-		this.pessoaDetails = pessoaDetails;
+	public void setPessoaDetails(List<PessoaDetail> pessoaDetail) {
+		this.pessoaDetail = pessoaDetail;
 	}
 
 	public Pessoa() {
