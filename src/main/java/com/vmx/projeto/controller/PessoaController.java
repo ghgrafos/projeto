@@ -136,18 +136,20 @@ public class PessoaController {
 		
 		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
 		modelAndView.addObject("pessoaobj", pessoa.get());
-		modelAndView.addObject("pessoaDetails", pessoadetailRepository.getPessoaDetails(idpessoa));
+		modelAndView.addObject("pessoaDetail", pessoadetailRepository.getPessoaDetails(idpessoa));
 		return modelAndView;
 	}
 	
 	@GetMapping("**/removerpessoadetails/{idpessoadetails}")
-	public ModelAndView removerPessoaDetails(@PathVariable("idpessoadetails")Long idpessoadetails) {
+	public ModelAndView removerPessoaDetails(@PathVariable("idpessoadetails")Long idpessoadetail) {
 		
-		pessoadetailRepository.deleteById(idpessoadetails);
+		Pessoa pessoa = pessoadetailRepository.findById(idpessoadetail).get().getPessoa();
+		
+		pessoadetailRepository.deleteById(idpessoadetail);
 		
 		ModelAndView modelAndView = new ModelAndView("/cadastro/pessoadetails");
-		modelAndView.addObject("pessoas", pessoaRepository.findAll());
-		modelAndView.addObject("pessoaobj", new Pessoa());
+		modelAndView.addObject("pessoaobj", pessoa);
+		modelAndView.addObject("pessoaDetail", pessoadetailRepository.getPessoaDetails(pessoa.getId()));
 		return modelAndView;
 	}
 	

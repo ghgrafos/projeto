@@ -54,7 +54,8 @@
 
 					<div class="form-group">
 						<div class="col-lg-9 col-lg-offset-2">
-							<button type="reset" class="btn btn-default">Cancelar</button>
+							<a href="/cadastropessoa"><button type="reset" class="btn btn-default">
+							Cancelar</button></a>
 							<button type="submit" class="btn btn-primary">Salvar</button>
 						</div>
 					</div>
@@ -116,11 +117,13 @@
 								style="vertical-align: inherit;"></font></font></td>
 						<td><font style="vertical-align: inherit;"><font
 								style="vertical-align: inherit;"></font></font> <a
-							th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a>
+							th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">
+							<button type="submit" class="btn btn-success">Editar</button></a>
 						</td>
 						<td><font style="vertical-align: inherit;"><font
 								style="vertical-align: inherit;"></font></font> <a
-							th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a>
+							th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}">
+							<button type="submit" class="btn btn-danger">Excluir</button></a>
 						</td>
 					</tr>
 				</tbody>

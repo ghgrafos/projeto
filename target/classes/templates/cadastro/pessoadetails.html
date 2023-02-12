@@ -52,7 +52,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel-footer">
-							<div th:each="d: ${pessoaDetails}" class="panel-body">
+							<div th:each="d: ${pessoaDetail}" class="panel-body">
 										<p>
 											Cpf: <span th:text="${d.cpf}"></span>
 										</p>
@@ -85,6 +85,10 @@
 										</p>
 										<p>
 											Role: <span sec:authentication="authorities"></span>
+										</p>
+										<p>
+										<a th:href="@{/removerpessoadetails/{idpessoadetail}(idpessoadetail=${d.id})}">
+										<button type="submit" class="btn btn-danger">Excluir</button></a>
 										</p>
 							</div>
 						</div>
@@ -159,6 +163,8 @@
 
 					<div class="form-group">
 						<div class="col-lg-9 col-lg-offset-2">
+							<a href="/listapessoas"><button type="reset" class="btn btn-default">
+								Cancelar</button></a>
 							<button type="submit" class="btn btn-primary">Salvar</button>
 						</div>
 					</div>
